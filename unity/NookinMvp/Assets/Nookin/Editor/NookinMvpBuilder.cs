@@ -15,47 +15,7 @@ public static class NookinMvpBuilder
     private const string BaseColorAsset = "Assets/Nookin/Character/nookin-basecolor.jpg";
     private const string SimpleMaterialAsset = "Assets/Nookin/Character/NookinBaseColor.mat";
     private const string SceneAsset = "Assets/Nookin/Scenes/Main.unity";
-    private const string ProbeSceneAsset = "Assets/Nookin/Scenes/WindowProbe.unity";
     private const string AnimationFolder = "Assets/Nookin/Animations";
-
-    [MenuItem("Nookin/Build window probe")]
-    public static void BuildWindowProbe()
-    {
-        EnsureAssetFolder("Assets/Nookin/Scenes");
-        var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
-        var cameraObject = new GameObject("ProbeCamera");
-        cameraObject.tag = "MainCamera";
-        var camera = cameraObject.AddComponent<Camera>();
-        camera.orthographic = true;
-        camera.orthographicSize = 1f;
-        camera.clearFlags = CameraClearFlags.SolidColor;
-        camera.backgroundColor = new Color(0f, 0f, 0f, 0f);
-        camera.allowHDR = false;
-        cameraObject.transform.position = new Vector3(0f, 0f, 3f);
-        cameraObject.transform.LookAt(Vector3.zero);
-
-        var visual = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-        visual.name = "WindowHitProbe";
-        visual.transform.localScale = Vector3.one * 0.8f;
-        var lightObject = new GameObject("ProbeLight");
-        var light = lightObject.AddComponent<Light>();
-        light.type = LightType.Directional;
-        lightObject.transform.rotation = Quaternion.Euler(25f, -35f, 0f);
-
-        var events = new GameObject("EventSystem");
-        events.AddComponent<EventSystem>();
-        events.AddComponent<StandaloneInputModule>();
-        var desktop = new GameObject("DesktopWindow");
-        var window = desktop.AddComponent<UniWindowController>();
-        var runtime = desktop.AddComponent<NookinDesktop>();
-        runtime.Window = window;
-        runtime.CharacterCamera = camera;
-
-        EditorSceneManager.SaveScene(scene, ProbeSceneAsset);
-        AssetDatabase.SaveAssets();
-        ConfigurePlayer();
-        BuildScene(ProbeSceneAsset, "NookinWindowProbe.app");
-    }
 
     [MenuItem("Nookin/Create MVP Scene")]
     public static void CreateScene()

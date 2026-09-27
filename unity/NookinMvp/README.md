@@ -14,7 +14,7 @@
   -logFile '/Users/nicolas/Projects_app/Nookin/unity/NookinMvp/Logs/build.log'
 ```
 
-输出为 `Builds/NookinMvp.app`。先前的窗口验证入口是 **Nookin → Build window probe**，输出为 `Builds/NookinWindowProbe.app`。
+输出为 `Builds/NookinMvp.app`。
 
 ## 素材处理
 
