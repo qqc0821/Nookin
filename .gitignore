@@ -143,3 +143,11 @@ vite.config.ts.timestamp-*
 .vite/
 
 .DS_Store
+
+# Unity MVP generated files
+unity/NookinMvp/Library/
+unity/NookinMvp/Temp/
+unity/NookinMvp/Logs/
+unity/NookinMvp/UserSettings/
+unity/NookinMvp/Obj/
+unity/NookinMvp/Builds/

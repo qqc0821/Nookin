@@ -2,7 +2,7 @@
 
 ## 项目背景
 
-本项目探索桌面端 AI 陪伴助手。`assets/` 中的图片是用户提供的形象参考；当前桌面 MVP 使用同目录的 `nookin-tripo-v1.glb`，不改变或覆盖原始素材。
+本项目探索桌面端 AI 陪伴助手。`assets/` 中的图片和 GLB 是用户提供的原始素材；当前 Unity 桌面 MVP 使用 `assets/bunny hooded kid 3d model v3.glb` 生成的项目内挥手修复副本，不改变或覆盖原始素材。
 
 ## 工作方式
 
@@ -19,9 +19,7 @@
 
 ## 当前 MVP 的项目操作
 
-- 技术栈：Electron 37、Three.js、Vite 7、TypeScript。Electron 主进程与 preload 位于 `electron/`，渲染代码位于 `src/`。
-- 安装锁定依赖：`npm ci`。
-- 构建并启动本地桌面应用：`npm start`。
-- 类型检查：`npm run check`；生产构建：`npm run build`。
-- 模型来源：`assets/nookin-tripo-v1.glb`，构建时由 Vite 复制到本地 `dist/`。保留 `assets/` 原始文件。
-- 运行验证需在 macOS 图形桌面中实际打开 Electron 窗口；构建检查不能替代透明窗口、模型和交互的人工检查。
+- 技术栈：Unity 6.3.25f1、glTFast 6.14.1、UniWindowController 固定 Git 提交。项目位于 `unity/NookinMvp/`。
+- 在该 Unity 版本中打开项目，或用 `NookinMvpBuilder.BuildMacApp` 批量构建 macOS 应用，输出在 `unity/NookinMvp/Builds/NookinMvp.app`；完整命令见 `unity/NookinMvp/README.md`。
+- `unity/NookinMvp/Tools/repair_bind_pose.py` 根据 v3 GLB 的 inverse bind matrices 恢复缺失的骨骼静止姿态；`--wave-pivots` 为挥手侧手臂修正旋转中心。生成的 GLB 与底色贴图是项目内副本，保留 `assets/` 原始文件。
+- 运行验证需在 macOS 图形桌面实际打开 `.app`，检查角色显示、透明区域点击穿透、点击动作和拖动窗口；构建成功不能替代交互验收。
